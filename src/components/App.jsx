@@ -7,8 +7,9 @@ export class App extends Component {
     images: [],
   }
 
-  chengeQuery = (value) => {
-  console.log(value)
+  chengeQuery = (query) => {
+    const queryValue = query['query'];
+    return queryValue
 }
 
   render() {
