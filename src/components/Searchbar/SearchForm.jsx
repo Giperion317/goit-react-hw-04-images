@@ -5,16 +5,28 @@ export class SearchForm extends Component {
     query: '',
   };
 
-  handleChange = event => {
-    this.setState({ query: event.target.value });
+  handleChange = ({ target: { value } }) => {
+    this.setState({
+      query: value.toLowerCase(),
+    });
   };
 
-  handleSubmit = evt => {
-    evt.preventDefault();
-      this.props.onSubmit({ ...this.state });
-};
+  handleSubmit = event => {
+    event.preventDefault();
+    if (this.state.query.trim() === '') {
+      window.alert('Please enter a request')
+
+    }
+    this.props.onSubmit({ ...this.state });
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ query: '' });
+  };
 
   render() {
+    const { query } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <button type="submit">
@@ -22,8 +34,12 @@ export class SearchForm extends Component {
         </button>
         <input
           type="text"
+          autoComplete="off"
+          autoFocus
           placeholder="Search images and photos"
           onChange={this.handleChange}
+          name="query"
+          value={query}
         />
       </form>
     );
