@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import { toast } from 'react-toastify';
 export class SearchForm extends Component {
   state = {
     query: '',
@@ -14,8 +14,7 @@ export class SearchForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     if (this.state.query.trim() === '') {
-      window.alert('Please enter a request')
-
+      return toast.warn('Please enter a request')
     }
     this.props.onSubmit({ ...this.state });
     this.reset();

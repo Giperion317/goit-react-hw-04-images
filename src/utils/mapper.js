@@ -1,7 +1,8 @@
 export const imageMaper = array => {
-  return array.map(({ id, webformatURL, largeImageURL }) => ({
+  return array.map(({ id, tags, webformatURL, largeImageURL }) => ({
     id,
     webformatURL,
     largeImageURL,
+    tags,
   }));
 };
