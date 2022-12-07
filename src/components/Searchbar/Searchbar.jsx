@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-
+import { Searcbar } from './Searchbar.styled';
 import { SearchForm } from "./SearchForm"
 
 export const Searchbar = ({ onSubmit }) => (
-    <header>
+    <Searcbar>
         <SearchForm onSubmit={onSubmit} />
-    </header>
+    </Searcbar>
 )
 
 Searchbar.propTypes = {

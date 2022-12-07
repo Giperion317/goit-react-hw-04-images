@@ -1,26 +1,29 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Component } from 'react';
+import { createPortal } from 'react-dom';
+import { Backdrop, ImageModal, CloseBtn } from './Modal.styled';
+
+const modalroot = document.querySelector('#modal-root')
 
 export class Modal extends Component {
-    componentDidMount() {
-    window.addEventListener('keydown', this.closeByEsc)
-    }
-    
-    componentWillUnmount() {
-        window.removeEventListener('keydown', this.closeByEsc)
-    }
+  componentDidMount() {
+    window.addEventListener('keydown', this.closeByEsc);
+  }
 
-  
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.closeByEsc);
+  }
+
   closeByEsc = ({ code }) => {
     const { closeModal } = this.props;
     if (code === 'Escape') {
       closeModal();
     }
-    };
-    
-    closeByBackDrop = event => {
+  };
+
+  closeByBackDrop = event => {
     const { closeModal } = this.props;
-    if (event.target!==event.currentTarget) {
+    if (event.target === event.currentTarget) {
       closeModal();
     }
   };
@@ -30,15 +33,14 @@ export class Modal extends Component {
       image: { src, alt },
       closeModal,
     } = this.props;
-    return (
-      <div onClick={this.closeByBackDrop}>
-        <div>
-          <button type="button" onClick={() => closeModal()}>
-            X
-          </button>
+    return createPortal(
+      <Backdrop onClick={this.closeByBackDrop}>
+        <ImageModal>
+          <CloseBtn type="button" onClick={() => closeModal()}></CloseBtn>
           <img src={src} alt={alt} />
-        </div>
-      </div>
+        </ImageModal>
+      </Backdrop>,
+      modalroot
     );
   }
 }
@@ -46,4 +48,4 @@ export class Modal extends Component {
 Modal.propTypes = {
   image: PropTypes.object.isRequired,
   closeModal: PropTypes.func.isRequired,
-}
+};

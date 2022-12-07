@@ -7,6 +7,8 @@ import { Button } from './Button/Button';
 import { fetchImages } from './services/imagesAPI';
 import { imageMaper } from 'utils/mapper';
 import { ColorRing } from 'react-loader-spinner';
+import { GlobalStyle } from 'utils/GlobalStyles';
+import { APP } from './App.syled';
 
 export class App extends Component {
   state = {
@@ -83,7 +85,7 @@ export class App extends Component {
   render() {
     const { images, isLoading, currentImage, totalHits } = this.state;
     return (
-      <>
+      <APP>
         <Searchbar onSubmit={this.serchQuery} />
         <ImageGallery images={images} openModal={this.openModal} />
         {isLoading && <ColorRing />}
@@ -93,8 +95,9 @@ export class App extends Component {
         {!isLoading && images.length < totalHits && (
           <Button text="Load more" clickHandler={this.clickHandler} />
         )}
-        <ToastContainer position="top-center" autoClose={3000} theme="colored"/>
-      </>
+        <ToastContainer position="top-center" autoClose={3000} theme="colored" />
+        <GlobalStyle/ >
+      </APP>
     );
   }
 }
