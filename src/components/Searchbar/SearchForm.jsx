@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+
 export class SearchForm extends Component {
   state = {
     query: '',
@@ -43,4 +45,8 @@ export class SearchForm extends Component {
       </form>
     );
   }
+}
+
+SearchForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
 }

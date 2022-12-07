@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { SearchForm } from "./SearchForm"
 
 export const Searchbar = ({ onSubmit }) => (
@@ -5,3 +7,7 @@ export const Searchbar = ({ onSubmit }) => (
         <SearchForm onSubmit={onSubmit} />
     </header>
 )
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+}

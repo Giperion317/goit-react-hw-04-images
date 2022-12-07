@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Modal extends Component {
     componentDidMount() {
@@ -9,6 +10,7 @@ export class Modal extends Component {
         window.removeEventListener('keydown', this.closeByEsc)
     }
 
+  
   closeByEsc = ({ code }) => {
     const { closeModal } = this.props;
     if (code === 'Escape') {
@@ -39,4 +41,9 @@ export class Modal extends Component {
       </div>
     );
   }
+}
+
+Modal.propTypes = {
+  image: PropTypes.object.isRequired,
+  closeModal: PropTypes.func.isRequired,
 }

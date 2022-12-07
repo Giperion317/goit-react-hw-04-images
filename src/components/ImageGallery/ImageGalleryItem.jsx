@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const ImageGalleryItem = (
   { id, webformatURL, tags, largeImageURL },
   openModal
@@ -6,3 +8,10 @@ export const ImageGalleryItem = (
     <img src={webformatURL} alt={tags} />
   </li>
 );
+
+ImageGalleryItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
+};
