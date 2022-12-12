@@ -41,12 +41,6 @@ export const App = () => {
       flowScroll();
   }, [query, page]);
 
-  useEffect(() => {
-    if (images.length === totalHits && page !== 1) {
-      toast.warn("We're sorry, but you've reached the end of search results.");
-    }
-  }, [images, totalHits, page]);
-
   const serchQuery = serchQuery => {
     if (serchQuery !== query) {
       setQuery(serchQuery);
